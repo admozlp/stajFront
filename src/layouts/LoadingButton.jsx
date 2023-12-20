@@ -1,9 +1,10 @@
 import React from "react";
 import { Spinner } from 'react-bootstrap';
+import '../style/css/loadingButton.css';
 
 const LoadingButton = () => {
   return (
-    <button className="btn btn-primary" type="button" disabled>
+    <button className="btn btn-secondary" type="button" disabled>
       <Spinner
         as="span"
         animation="border"

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../style/css/SignIn.css";
+import "../../style/css/signup.css";
 import AdemTextInput from "../../utilities/customFormControls/AdemTextInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../redux/slice/authSlice";
 import LoadingButton from "../../layouts/LoadingButton";
+import AeuLogo from "../../style/images/aeu.png"
+import AeuUsttenFotograf from "../../style/images/aeuUsttenFotograf.jpg"
+import ReCAPTCHA from "react-google-recaptcha";
+import { NotificationContainer, NotificationManager } from "react-notifications";
+
+
 
 export default function SignUp() {
   const initialValues = {
@@ -31,42 +37,55 @@ export default function SignUp() {
       .required("Parola alanı zorunludur")
       .min(8, "Parola minimum 8 karakter olabilir")
       .max(150, "Parola maksimum 150 karakter olabilir")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,         
-        "Parola 8 karakterden oluşmalı, aynı zamanda en az bir büyük harf bir küçük harf, bir numara ve bir özel karakter içermelidir(#,!)"        
-      ),
+      // .matches(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,         
+      //   "Parola 8 karakterden oluşmalı, aynı zamanda en az bir büyük harf bir küçük harf, bir numara ve bir özel karakter içermelidir(#,!)"        
+      // ),
+      ,
+
+      passwordConfirmation: Yup.string()
+     .oneOf([Yup.ref('password'), null], 'Parolalar uyusmuyor')
+
   });
 
   const dispatch = useDispatch();
 
-  const isLoading = useSelector((state) => state.auth.isLoading);
+  const isRegisterLoading = useSelector((state) => state.auth.isRegisterLoading);
 
   const registerError = useSelector((state)=> state.auth.registerError);
 
   const navigate = useNavigate();
 
+  const [capVal, setCapVal] = useState(null)
+
+
   function handleOnSubmit(values) {
     dispatch(addUser(values)).then((response) => {
-      if (addUser.fulfilled.match(response) && response.payload.status === 200) {
-        localStorage.clear();
-        localStorage.setItem("user-token", response.payload.data.access_token)        
-        navigate("/")
+      if (addUser.fulfilled.match(response) && response.payload.status === 200) {     
+        navigate("/giris")
       }    
     });
   }
+  useEffect(() => {
+    if (registerError && registerError.data != null) {
+      NotificationManager.error(`${registerError.data.message}`, "Kayıt Başarısız", 2800);
+    }
+  }, [registerError]);
   
-  return (
-    <div className="signin-container">
-      <h2>Sign Up</h2>
-      {
-        registerError ?
-        ( 
-          <div className="alert alert-danger"> 
-            {registerError}
-          </div>
-         ) : (null)
-      }
 
+  return (
+    <div className="row">
+
+    <div className="resim col-sm-6">
+      <div className="background">
+        <img className="background-image" src={AeuUsttenFotograf} alt="AeuUsttenFotograf"></img>
+      </div>
+      <div className="foreground">
+        <img className="foreground-image" src={AeuLogo} alt="AueLogo"></img>
+      </div>    
+    </div>
+
+    <div className="signup-container col-sm-6">  
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
@@ -75,25 +94,28 @@ export default function SignUp() {
           handleOnSubmit(values);
         }}>
         <Form>
+        <h2>Kaydol</h2>
+        <NotificationContainer/>
+        <small className="kisaAciklama">Sisteme erişmek için kaydol ve mail adresini doğrula </small>
           <div>
             <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="firstName">Ad</label>
               <AdemTextInput
                 name="firstname"
                 type="text"
-                className="form-control"
+                className="text-alani"
                 id="firstName"
-                placeholder="Enter First Name"
+                placeholder="Ad giriniz"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="lastName">Soyad</label>
               <AdemTextInput
                 name="lastname"
                 type="text"
-                className="form-control"
+                className="text-alani"
                 id="lastName"
-                placeholder="Enter Last Name"
+                placeholder="Soyad giriniz"
               />
             </div>
             <div className="form-group">
@@ -101,32 +123,51 @@ export default function SignUp() {
               <AdemTextInput
                 name="email"
                 type="email"
-                className="form-control"
+                className="text-alani"
                 id="email"
-                placeholder="Enter email"
+                placeholder="Email giriniz"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Parola</label>
               <AdemTextInput
                 name="password"
-                placeholder="Enter password"
                 id="password"
                 type="password"
-                className="form-control"
+                className="text-alani"
+                placeholder="Parola giriniz"
               />
             </div>
+            <div className="form-group">
+              <label htmlFor="password">Parola Tekrarı</label>
+              <AdemTextInput
+                name="passwordConfirmation"
+                id="passwordConfirmation"
+                type="password"
+                className="text-alani"
+                placeholder="Parola tekrarı giriniz"
+              />
+            </div>
+            <div className="form-group">
+                <ReCAPTCHA
+                  sitekey="6Le5VTEpAAAAAHI_heoEKHu7aFz0Kteoia2yMxfP"
+                  onChange={(val) => {setCapVal(val)}}
+                />
+            </div>
             {
-            isLoading ? (
+            isRegisterLoading ? (
               <LoadingButton />
             ) : (
-              <button type="submit" className="btn btn-primary">Sign Up</button>
+              <button type="submit" disabled={!capVal} className="kaydolbtn btn btn-secondary">Kaydol</button>
             )}
           </div>
+          <p>Hesabın var mı? <Link to="/giris" className="link">Giriş yap </Link></p>
         </Form>
+
       </Formik>
-      <p>Do you have an account? <Link to="/signin">SignIn </Link></p>
+    </div>
     </div>
   );
 }
+

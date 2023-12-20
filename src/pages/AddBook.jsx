@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingButton from '../layouts/LoadingButton';
 import { addBook } from '../redux/slice/bookSlice';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 export default function AddBook() {
@@ -43,7 +43,6 @@ export default function AddBook() {
 
   return (
     <div>
-      <ToastContainer />
         <Navigation />
         {
 

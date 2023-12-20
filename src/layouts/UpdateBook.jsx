@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Navigation from './Navigation'
 import { useParams } from 'react-router'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Form, Formik } from 'formik';
 import AdemTextInput from '../utilities/customFormControls/AdemTextInput';
 import * as Yup from "yup";
@@ -48,7 +48,6 @@ export default function UpdateBook() {
     
   return (
     <div>
-      <ToastContainer />
       <Navigation />
       {
         updateBookResponse !== null ? (

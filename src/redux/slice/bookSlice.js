@@ -27,7 +27,6 @@ const BASE_URL = "http://localhost:8080";
 
 export const getBookCount = createAsyncThunk("book/getBookCount", async()=>{
     const token = localStorage.getItem("user-token");
-    console.log(token);
     const headers = {
         'Authorization': `Bearer ${token}`,              
     }

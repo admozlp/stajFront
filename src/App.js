@@ -12,8 +12,8 @@ function App() {
     <div className="container-fluid">
       <Routes>
         <Route exact path="/" Component={Dashboard} />
-        <Route exact path="/signin" Component={SignIn} />
-        <Route exact path="/signup" Component={SignUp } />
+        <Route exact path="/giris" Component={SignIn} />
+        <Route exact path="/kayit" Component={SignUp } />
         <Route exact path="/addbook" Component={AddBook} />
         <Route exact path="/update/:id" Component={UpdateBook} />
       </Routes>

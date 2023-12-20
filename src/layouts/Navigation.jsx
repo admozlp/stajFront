@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { logout } from '../redux/slice/authSlice';
 import "../style/css/navigation.css";
 import { Link } from 'react-router-dom';
-import { LoadingButtonSuccess } from './LoadingButton';
+import LoadingButton, { LoadingButtonSuccess } from './LoadingButton';
 
 
 export default function Navigation() {
@@ -14,12 +14,12 @@ export default function Navigation() {
     const dispatch = useDispatch();
 
     const isLoading = useSelector((state)=> state.auth.isLoading);
-
+    const isLogoutLoanding = useSelector((state)=> state.auth.isLogoutLoanding);
     const handleSignOut = ()=>{
         dispatch(logout()).then((response) => {            
             if (logout.fulfilled.match(response)) {            
               localStorage.clear();
-              navigate("/signin");                  
+              navigate("/giris");                  
             }    
           });                
     }
@@ -48,8 +48,11 @@ export default function Navigation() {
                 {
                   isLoading ? (
                     <LoadingButtonSuccess />
-                  ) : (
-          
+                  ) :isLogoutLoanding ?
+                  (
+                    <LoadingButton />
+                  )
+                  :(                    
                     <button onClick={handleSignOut} className="btn btn-outline-success my-2 my-sm-0" type="submit" >Çıkış Yap</button>
                 )}
 

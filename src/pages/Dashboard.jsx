@@ -4,7 +4,7 @@ import Navigation from '../layouts/Navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBook, getAllBook, getBookCount } from '../redux/slice/bookSlice';
 import Pagination from '../layouts/Pagination';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import BookTable from '../layouts/BookTable';
 import { Alert } from 'react-bootstrap';
 
@@ -23,7 +23,7 @@ export default function Dashboard() {
     if (!userToken || userToken === 'undefined') {
       setIsLoggedIn(false);
       
-      return navigate('/signin');
+      return navigate('/giris');
     }
     setIsLoggedIn(true);
 
@@ -56,10 +56,9 @@ export default function Dashboard() {
 
       <h2 className="text-center">Dashboard</h2><br/>
 
-      <ToastContainer />
       {
           bookLoadingError ===  "ERR_BAD_REQUEST" ? (
-            navigate("/signin")          
+            navigate("/giris")          
           ): bookLoadingError === "ERR_NETWORK" ? (
             <Alert variant='danger'>No internet connection</Alert>
           ):

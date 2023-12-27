@@ -14,11 +14,11 @@
      
   .resim {
     height: auto;
-    width: 100%;
+    width: 50%;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     position: relative;
     overflow: hidden;
     object-fit: cover;
@@ -27,9 +27,11 @@
   .background {
     position: relative;
     width: 100%;
-    height: auto;
-    object-fit: cover;
-    overflow: hidden;
+    object-fit:cover;
+    background-image: radial-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .8)), url('../images/aeuUsttenFotograf.jpg');
+    min-height: 117vh !important;
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
     padding: 0;
     filter: blur(1px);

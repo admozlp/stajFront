@@ -65,10 +65,8 @@ export const logout = createAsyncThunk("auth/logout", async()=>{
         method: "GET",
         url: "http://localhost:8080/api/v1/auth/logout"
       }).then(response => {
-        // console.log(response);
         return response
       }).catch(error=>{
-        // console.log(error);
         return error;
       });
 
@@ -114,9 +112,12 @@ export const authSlice = createSlice({
             state.isLoginLoading = false
             state.loginResponse = action.payload   
             
+            console.log(state.loginResponse)
+
             state.registerError = {}
             state.registerResponse = {}
             state.logoutResponse = {}
+            state.loginError = {}
             
         })
         builder.addCase(login.rejected, (state, action)=>{                

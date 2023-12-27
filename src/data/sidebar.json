@@ -1,0 +1,37 @@
+[
+    {
+        "title":"KAEÜ Staj",
+        "icon": "bi-gearfill",
+        "path":"/"
+    },
+    {
+        "title":"Staj Başvuruları",
+        "icon": "list-column-reverse",
+        "path":"/basvurular"
+    },
+    {
+        "title":"Staj Başvurusu",
+        "icon": "pencil-square",
+        "path":"/stajbasvuru"
+    },
+    {
+        "title":"Kurul Onayları",
+        "icon": "check2-circle",
+        "path":"/kurul-onaylari"
+    },
+    {
+        "title":"Komisyonlar",
+        "icon": "people-fill",
+        "path":"/komisyonlar"
+    },
+    {
+        "title":"Rapor Yaz",
+        "icon": "clipboard-minus",
+        "path":"/rapor"
+    },
+    {
+        "title":"Genel Ayarlar",
+        "icon": "gear",
+        "path": "/ayarlar"
+    }
+]

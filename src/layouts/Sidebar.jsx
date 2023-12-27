@@ -3,9 +3,11 @@ import items from "../data/sidebar.json"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { logout } from "../redux/slice/authSlice";
+import 'react-bootstrap-icons'
+import { BoxArrowRight } from "react-bootstrap-icons";
 
 
-export default function Sidebar(){
+export default function Sidebar({aktif}){
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -20,9 +22,14 @@ export default function Sidebar(){
   }
 
     return (
-        <div className="sidebar">
-          { items.map((item, index) => <SidebarItem key={index} item={item} />) }
-          <Link className="sidebar-item plain" onClick={hadnleSignOut}>Çıkış Yap</Link>
+        <div className="sidebar" >
+          { items.map((item, index) => <SidebarItem key={index} item={item} aktif={aktif} />) }
+
+            <Link className="sidebar-item plain" onClick={hadnleSignOut} >
+              <BoxArrowRight />
+              <small style={{marginRight:10}}></small>
+              Çıkış Yap
+            </Link>
         </div>
     )
 }

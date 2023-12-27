@@ -1,11 +1,12 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import * as icons from 'react-bootstrap-icons';
 
-export default function SidebarItem({item}){
-    const [open, setOpen] = useState(false)
+export default function SidebarItem({item, aktif}){
+    const [open, setOpen] = useState(false);
+    const IconComponent = icons[item.icon];
 
-    
-    if(item.childrens){
+    if (item.childrens) {
         return (
             <div className={open ? "sidebar-item open" : "sidebar-item"}>
                 <div className="sidebar-title">
@@ -19,13 +20,14 @@ export default function SidebarItem({item}){
                     { item.childrens.map((child, index) => <SidebarItem key={index} item={child} />) }
                 </div>
             </div>
-        )
-    }else{
+        );
+    } else {
         return (
-            <Link to={item.path || "#"} className="sidebar-item plain">
-                { item.icon && <i className={item.icon}></i> }
+            <NavLink to={item.path || "#"} className={item.id === aktif ? "sidebar-item plain active" : "sidebar-item plain"}>
+                {item.icon && IconComponent && React.createElement(IconComponent)}
+                <small style={{ marginRight: 10 }}></small>
                 {item.title}
-            </Link>
-        )
+            </NavLink>
+        );
     }
 }

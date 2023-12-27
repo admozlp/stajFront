@@ -1,37 +1,49 @@
 [
     {
+        "id": 1,
         "title":"KAEÜ Staj",
-        "icon": "bi-gearfill",
         "path":"/"
     },
     {
+        "id" :2 ,
         "title":"Staj Başvuruları",
-        "icon": "list-column-reverse",
+        "icon": "ListColumnsReverse",
         "path":"/basvurular"
     },
     {
+        "id" :3,
         "title":"Staj Başvurusu",
-        "icon": "pencil-square",
+        "icon": "PencilSquare",
         "path":"/stajbasvuru"
     },
     {
+        "id" :4,
         "title":"Kurul Onayları",
-        "icon": "check2-circle",
+        "icon": "Check2Circle",
         "path":"/kurul-onaylari"
     },
     {
+        "id" :5,
         "title":"Komisyonlar",
-        "icon": "people-fill",
+        "icon": "PeopleFill",
         "path":"/komisyonlar"
     },
     {
+        "id" :6,
         "title":"Rapor Yaz",
-        "icon": "clipboard-minus",
+        "icon": "ClipboardMinus",
         "path":"/rapor"
     },
     {
+        "id" :7,
         "title":"Genel Ayarlar",
-        "icon": "gear",
+        "icon": "Gear",
         "path": "/ayarlar"
+    },
+    {
+        "id" :8,
+        "title":"Profilim",
+        "icon": "PersonFill",
+        "path": "/profilim"
     }
 ]

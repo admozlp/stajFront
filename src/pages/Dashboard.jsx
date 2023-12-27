@@ -28,10 +28,12 @@ export default function Dashboard() {
 
   return (
     <div className="main">
-      <Sidebar />
-      <div className="container">
+      <Sidebar aktif={0}/>
+      <div className="contain">
         <h1 className="title">Benim React uygulamam</h1>
-        <p className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        fasldnfnasdfşasnfşasrşfhnasşfjhdsşrgfasfasdnfasnfaksnfkankerfjnkewr
+        glasnjrglşsdhngesht</p>
         <button className="btn">Explore now</button>
       </div>
     </div>

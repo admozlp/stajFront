@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../layouts/Sidebar";
+import { useNavigate } from "react-router";
+import { loginController } from "../utilities/functions/loginControl";
 
 export default function StajBasbvurusu() {
+  const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const roller = localStorage.getItem("roller");
+
+  useEffect(() => {
+    if (!loginController() ) {
+      setIsLoggedIn(false);
+      return navigate("/giris");
+    }
+    if(!roller.includes("ADMIN") && !roller.includes("OGRENCI")){
+      setIsLoggedIn(false);
+      return navigate("/access-denied")
+    }
+
+    setIsLoggedIn(true);
+  }, [isLoggedIn, navigate, roller]);
+
+
   return (
     <div>
       <div className="main">
-        <Sidebar  aktif={3}/>
+        <Sidebar  aktif={2}/>
         <div className="contain">
           <h1 className="title">My React App</h1>
           <p className="info">

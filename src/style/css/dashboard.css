@@ -16,8 +16,7 @@ body {
   height: 100vh;
 }
 
-.contain {
-  
+.contain {  
   flex-grow: 1;
   padding: 2em;
   background-image: radial-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),

@@ -8,17 +8,24 @@ export default function StajBasvurulari() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const roller = localStorage.getItem("roller");
+
   useEffect(() => {
-    if (!loginController()) {
+    if (!loginController() ) {
       setIsLoggedIn(false);
       return navigate("/giris");
     }
+    if(!roller.includes("ADMIN") && !roller.includes("KOMISYONBASKANI") && !roller.includes("KOMISYONUYESI") && !roller.includes("SEKRETER")){
+      setIsLoggedIn(false);
+      return navigate("/access-denied")
+    }
+
     setIsLoggedIn(true);
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, navigate, roller]);
 
   return (
     <div className="main">
-      <Sidebar aktif={2}/>
+      <Sidebar aktif={1}/>
       <div className="contain">
         <h1 className="title">My React App</h1>
         <p className="info">

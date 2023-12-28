@@ -1,49 +1,57 @@
 [
     {
-        "id": 1,
+        "id": 0,
         "title":"KAEÜ Staj",
-        "path":"/"
+        "path":"/",
+        "roller": ["ADMIN", "KOMISYONBASKANI", "KOMISYONUYESI", "SEKRETER" ,"OGRENCI"]
     },
     {
-        "id" :2 ,
+        "id" :1 ,
         "title":"Staj Başvuruları",
         "icon": "ListColumnsReverse",
-        "path":"/basvurular"
+        "path":"/basvurular",
+        "roller": ["ADMIN", "KOMISYONBASKANI", "KOMISYONUYESI", "SEKRETER"]
+    },
+    {
+        "id" :2,
+        "title":"Staj Başvurusu",
+        "icon": "PencilSquare",
+        "path":"/stajbasvuru",
+        "roller": ["ADMIN", "OGRENCI"]
     },
     {
         "id" :3,
-        "title":"Staj Başvurusu",
-        "icon": "PencilSquare",
-        "path":"/stajbasvuru"
+        "title":"Kurul Onayları",
+        "icon": "Check2Circle",
+        "path":"/kurul-onaylari",
+        "roller": ["ADMIN", "KOMISYONBASKANI", "KOMISYONUYESI", "SEKRETER"]
     },
     {
         "id" :4,
-        "title":"Kurul Onayları",
-        "icon": "Check2Circle",
-        "path":"/kurul-onaylari"
+        "title":"Komisyonlar",
+        "icon": "PeopleFill",
+        "path":"/komisyonlar",
+        "roller": ["ADMIN", "SEKRETER"]
     },
     {
         "id" :5,
-        "title":"Komisyonlar",
-        "icon": "PeopleFill",
-        "path":"/komisyonlar"
+        "title":"Rapor Yaz",
+        "icon": "ClipboardMinus",
+        "path":"/rapor",
+        "roller": ["ADMIN", "OGRENCI"]
     },
     {
         "id" :6,
-        "title":"Rapor Yaz",
-        "icon": "ClipboardMinus",
-        "path":"/rapor"
+        "title":"Genel Ayarlar",
+        "icon": "Gear",
+        "path": "/ayarlar",
+        "roller": ["ADMIN", "SEKRETER"]
     },
     {
         "id" :7,
-        "title":"Genel Ayarlar",
-        "icon": "Gear",
-        "path": "/ayarlar"
-    },
-    {
-        "id" :8,
         "title":"Profilim",
         "icon": "PersonFill",
-        "path": "/profilim"
+        "path": "/profilim",
+        "roller": ["ADMIN", "KOMISYONBASKANI", "KOMISYONUYESI", "SEKRETER" ,"OGRENCI"]
     }
 ]

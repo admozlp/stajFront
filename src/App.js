@@ -11,11 +11,16 @@ import RaporYaz from "./pages/RaporYaz";
 import GenelAyarlar from "./pages/GenelAyarlar";
 import Profilim from "./pages/Profilim";
 import StajBasbvurusu from "./pages/StajBasbvurusu";
+import AccessDenied from "./pages/AccessDenied";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
     <div>
       <Routes>
+        <Route exact="true" path="/*" element={<PageNotFound />} />
+        <Route exact="true" path="/access-denied" element={<AccessDenied />} />
+
         <Route exact="true" path="/" element={<Dashboard />} />
         <Route exact="true" path="/basvurular" element={<StajBasvurulari />} />
         <Route exact="true" path="/stajbasvuru" element={<StajBasbvurusu />} />
@@ -24,6 +29,7 @@ function App() {
         <Route exact="true" path="/rapor" element={<RaporYaz />} />
         <Route exact="true" path="/ayarlar" element={<GenelAyarlar />} />
         <Route exact="true" path="/profilim" element={<Profilim />} />
+        
 
         <Route exact="true" path="/giris" element={<SignIn />} />
         <Route exact="true" path="/kayit" element={<SignUp />} />

@@ -27,6 +27,7 @@ export default function SignIn() {
       if (login.fulfilled.match(response) && response.payload.status === 200) {      
         localStorage.clear();
         localStorage.setItem("user-token", response.payload.data.data.access_token)        
+        localStorage.setItem("roller", response.payload.data.data.roller)
         navigate("/")
       }      
     });

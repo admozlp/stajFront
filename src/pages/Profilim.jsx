@@ -18,7 +18,7 @@ export default function Profilim() {
 
   return (
     <div className="main">
-      <Sidebar aktif={8}/>
+      <Sidebar aktif={7}/>
       <div className="contain">
         <h1 className="title">My React App</h1>
         <p className="info">

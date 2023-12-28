@@ -24,7 +24,7 @@ export const addUser = createAsyncThunk("auth/addUser", async(values,{rejectWith
         }
         const res = await axios.request({
                 method: "POST",
-                url: `${BASE_URL}/api/v1/ogrenciauth/ogrenci-kayit`,     
+                url: `${BASE_URL}/api/v1/auth/ogrenci-kayit`,     
                 headers: headers,   
                 data : values
             })
@@ -112,8 +112,6 @@ export const authSlice = createSlice({
             state.isLoginLoading = false
             state.loginResponse = action.payload   
             
-            console.log(state.loginResponse)
-
             state.registerError = {}
             state.registerResponse = {}
             state.logoutResponse = {}

@@ -40,7 +40,6 @@ export default function SidebarItem({item, aktif}){
                             </NavLink>
                         );
                     } else {
-                        console.log(rol);
                         return null;
                     }
                 })}

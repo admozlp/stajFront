@@ -9,10 +9,10 @@ export default function Dashboard() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
   useEffect(() => {
     if (!loginController()) {
       setIsLoggedIn(false);
+      localStorage.clear();
       return navigate("/giris");
     }
     setIsLoggedIn(true);
@@ -20,16 +20,20 @@ export default function Dashboard() {
 
   return (
     <div className="main">
-      <Sidebar aktif={0}/>
-      <div className="contain">
-        <h1 className="title">Benim React uygulamam</h1>
-        <p className="info">Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        fasldnfnasdfşasnfşasrşfhnasşfjhdsşrgfasfasdnfasnfaksnfkankerfjnkewr
-        glasnjrglşsdhngesht</p>
-        <button className="btn">Explore now</button>
-      </div>
+      {isLoggedIn ? (
+        <>
+          <Sidebar aktif={0} />
+          <div className="contain">
+            <h1 className="title">Burası ana sayfa</h1>
+            <p className="info">
+              Burada admin sekreter komisyon başkanı ve komisyon üyeleri kendi
+              programlarına ait istatistikleri görecek. Öğrenciler ise staj akış
+              diyagramı ve diğer bilgilendirmeleri görecek.
+            </p>
+            <button className="btn">Explore now</button>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

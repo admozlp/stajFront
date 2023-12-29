@@ -1,0 +1,63 @@
+.account-verification{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: url("../images/account-verification.jpg") center/cover no-repeat fixed;
+  color: #ffffff; /* Beyaz renk */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.access-denied-container {
+    text-align: center;
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.6
+    ); /* Saydamlık eklemek için arka plan rengi */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .erisim-engellendi {
+    color: #dc3545; /* Kırmızı renk */
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .forbidden {
+    font-weight: bold;
+    color: #ff9800; /* Turuncu renk */
+    margin-bottom: 30px;
+  }
+  
+  .aciklama {
+    font-weight: bold;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+    font-size: 17px;
+    margin-bottom: 25px;
+  }
+  .home-aciklama {
+    width: 100%;
+    margin-left: 0;
+    font-size: 17px;
+  }
+  .to-home {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .success-message {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+  

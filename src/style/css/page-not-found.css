@@ -1,0 +1,47 @@
+.body-not-found {
+  margin: 0;
+  height: 100vh;
+  width: auto;
+  font-family: Arial, sans-serif;
+  background-image: url("../images/page-not-found.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+.content h1 {
+  font-weight: bold;
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.content p {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.button {
+  display: inline-block;
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: darkblue;
+}

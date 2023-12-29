@@ -11,13 +11,14 @@ export default function RaporYaz() {
   const roller = localStorage.getItem("roller");
 
   useEffect(() => {
-    if (!loginController() ) {
+    if (!loginController()) {
       setIsLoggedIn(false);
+      localStorage.clear();
       return navigate("/giris");
     }
-    if(!roller.includes("ADMIN") && !roller.includes("OGRENCI")){
+    if (!roller.includes("ADMIN") && !roller.includes("OGRENCI")) {
       setIsLoggedIn(false);
-      return navigate("/access-denied")
+      return navigate("/access-denied");
     }
 
     setIsLoggedIn(true);
@@ -25,17 +26,21 @@ export default function RaporYaz() {
 
   return (
     <div className="main">
-      <Sidebar aktif={5}/>
-      <div className="contain">
-        <h1 className="title">My React App</h1>
-        <p className="info">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-        <button className="btn">Explore now</button>
-      </div>
+      {isLoggedIn ? (
+        <>
+          <Sidebar aktif={5} />
+          <div className="contain">
+            <h1 className="title">My React App</h1>
+            <p className="info">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <button className="btn">Explore now</button>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
-import "./App.css";
 import { Route, Routes } from "react-router";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -13,6 +12,7 @@ import Profilim from "./pages/Profilim";
 import StajBasbvurusu from "./pages/StajBasbvurusu";
 import AccessDenied from "./pages/AccessDenied";
 import PageNotFound from "./pages/PageNotFound";
+import VerifyAccount from "./pages/VerifyAccount";
 
 function App() {
   return (
@@ -23,12 +23,13 @@ function App() {
 
         <Route exact="true" path="/" element={<Dashboard />} />
         <Route exact="true" path="/basvurular" element={<StajBasvurulari />} />
-        <Route exact="true" path="/stajbasvuru" element={<StajBasbvurusu />} />
+        <Route exact="true" path="/staj-basvuru" element={<StajBasbvurusu />} />
         <Route exact="true" path="/kurul-onaylari" element={<KurulOnaylari />} />
         <Route exact="true" path="/komisyonlar" element={<Komisyonlar />} />
-        <Route exact="true" path="/rapor" element={<RaporYaz />} />
+        <Route exact="true" path="/rapor-yaz" element={<RaporYaz />} />
         <Route exact="true" path="/ayarlar" element={<GenelAyarlar />} />
         <Route exact="true" path="/profilim" element={<Profilim />} />
+        <Route exact="true" path="/verify-account/:token" element={<VerifyAccount />} />
         
 
         <Route exact="true" path="/giris" element={<SignIn />} />

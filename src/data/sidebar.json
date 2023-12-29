@@ -16,7 +16,7 @@
         "id" :2,
         "title":"Staj Başvurusu",
         "icon": "PencilSquare",
-        "path":"/stajbasvuru",
+        "path":"/staj-basvuru",
         "roller": ["ADMIN", "OGRENCI"]
     },
     {
@@ -37,7 +37,7 @@
         "id" :5,
         "title":"Rapor Yaz",
         "icon": "ClipboardMinus",
-        "path":"/rapor",
+        "path":"/rapor-yaz",
         "roller": ["ADMIN", "OGRENCI"]
     },
     {

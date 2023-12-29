@@ -20,9 +20,9 @@ export default function Sidebar({aktif}){
       }    
     });  
   }
-
     return (
         <div className="sidebar" >
+          
           { items.map((item, index) => <SidebarItem key={index} item={item} aktif={aktif} />) }
 
             <Link className="sidebar-item plain" onClick={hadnleSignOut} >

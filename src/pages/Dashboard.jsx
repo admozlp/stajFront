@@ -23,7 +23,7 @@ export default function Dashboard() {
       {isLoggedIn ? (
         <>
           <Sidebar aktif={0} />
-          <div className="contain">
+          <div className="dash-contain">
             <h1 className="title">Burası ana sayfa</h1>
             <p className="info">
               Burada admin sekreter komisyon başkanı ve komisyon üyeleri kendi

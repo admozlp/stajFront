@@ -26,9 +26,16 @@ export default function SignUp() {
       }    
     });
   }
+  
   useEffect(() => {
     if (registerError && registerError.data != null) {
-      NotificationManager.error(`${registerError.data.message}`, "Kayıt Başarısız", 2800);
+      if (registerError.data.errorFields) {
+        Object.entries(registerError.data.errorFields).forEach(([key, value]) => {
+          NotificationManager.error(`${value}`, "Kayıt Başarısız", 4000);
+        });
+      } else {
+        NotificationManager.error(`${registerError.data.message}`, "Kayıt Başarısız", 4000);
+      }
     }
   }, [registerError]);
   

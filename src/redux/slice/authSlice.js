@@ -125,6 +125,8 @@ export const authSlice = createSlice({
       state.isRegisterLoading = false;
       state.registerError = action.payload.response;
 
+      console.log(state.registerError);
+
       state.loginError = {};
       state.loginResponse = {};
       state.logoutResponse = {};

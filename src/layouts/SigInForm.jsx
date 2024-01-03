@@ -13,12 +13,8 @@ export default function SigInForm({handleOnSubmit}) {
     const initialValues = { email: "", password: "" };
 
     const schema = Yup.object({
-        email: Yup.string().required("Email alanı zorunludur").email("Email geçerli değil").matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i, "Email geçerli değil"),
-        password: Yup.string().required("Parola alanı zorunludur").max(15, "Parola maksimum 150 karakter olabilir").min(8, "Parola minimum 8 karakter olabilir")
-              // .matches(
-          //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,         
-          //   "Parola 8 karakterden oluşmalı, aynı zamanda en az bir büyük harf bir küçük harf, bir numara ve bir özel karakter içermelidir(#,!)"        
-          // ),
+        email: Yup.string().required("Email alanı zorunludur"),        
+        password: Yup.string().required("Parola alanı zorunludur")         
       });
 
       const [capVal, setCapVal] = useState(null)

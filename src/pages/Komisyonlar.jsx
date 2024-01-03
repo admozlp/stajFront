@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { loginController } from "../utilities/functions/loginControl";
+import { LoginController } from "../utilities/functions/loginControl";
 import Sidebar from "../layouts/Sidebar";
+import { useSelector } from "react-redux";
 
 export default function Komisyonlar() {
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const tokenCheckError = useSelector((state) => state.auth.tokenCheckError);
+
   const roller = localStorage.getItem("roller");
 
   useEffect(() => {
-    if (!loginController()) {
+    if (!LoginController()) {
       setIsLoggedIn(false);
       localStorage.clear();
       return navigate("/giris");
@@ -21,8 +24,14 @@ export default function Komisyonlar() {
       return navigate("/access-denied");
     }
 
+    if(tokenCheckError && tokenCheckError.code === 401){
+      setIsLoggedIn(false);
+      localStorage.clear();
+      return navigate("/giris");
+    }
+
     setIsLoggedIn(true);
-  }, [isLoggedIn, navigate, roller]);
+  }, [isLoggedIn, navigate, roller, tokenCheckError]);
 
   return (
     <div className="main">

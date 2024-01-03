@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { logout } from "../redux/slice/authSlice";
 import 'react-bootstrap-icons'
 import { BoxArrowRight } from "react-bootstrap-icons";
+import '../style/css/sidebar.css'
 
 
 export default function Sidebar({aktif}){
@@ -21,7 +22,7 @@ export default function Sidebar({aktif}){
     });  
   }
     return (
-        <div className="sidebar" >
+        <div className="sidebar" style={{color:"#060818"}}>
           
           { items.map((item, index) => <SidebarItem key={index} item={item} aktif={aktif} />) }
 

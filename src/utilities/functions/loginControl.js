@@ -1,4 +1,4 @@
-export const loginController = () => {
+export const LoginController = () => {
   const userToken = localStorage.getItem("user-token");
 
   if (!userToken || userToken === "undefined") {

@@ -1,0 +1,7 @@
+.profil-eksik {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: max-content;
+}

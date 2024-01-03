@@ -18,13 +18,17 @@ export default function SignupForm({ handleOnSubmit }) {
   const schema = Yup.object({
     firstname: Yup.string()
       .required("Ad alanı zorunludur")
-      .max(50, "Ad maksimum 50 karakter olabilir"),
+      .min(2)
+      .max(100, "Ad maksimum 100 karakter olabilir"),
     lastname: Yup.string()
       .required("Soyad alanı zorunludur")
-      .max(50, "Soyad maksimum 50 karakter olabilir"),
+      .min(2)
+      .max(100, "Soyad maksimum 100 karakter olabilir"),
     email: Yup.string()
       .required("Email alanı zorunludur")
       .email("Geçerli bir e-posta adresi girin")
+      .min(10, "Email adresi minimum 5 karakter olabilir")
+      .max(200, "Email adresi 200 karakter olabilir")
       .matches(
         /^[a-zA-Z0-9._%+-]+@ogr\.ahievran\.edu\.tr$/,
         "Geçerli bir ahievran.edu.tr e-posta adresi girin"
@@ -32,7 +36,12 @@ export default function SignupForm({ handleOnSubmit }) {
     password: Yup.string()
       .required("Parola alanı zorunludur")
       .min(8, "Parola minimum 8 karakter olabilir")
-      .max(150, "Parola maksimum 150 karakter olabilir"),
+      .max(100, "Parola maksimum 150 karakter olabilir")
+      // .matches(
+          //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,         
+          //   "Parola 8 karakterden oluşmalı, aynı zamanda en az bir büyük harf bir küçük harf, bir numara ve bir özel karakter içermelidir(#,!)"        
+          // ),
+    ,
     passwordConfirmation: Yup.string().oneOf(
       [Yup.ref("password"), null],
       "Parolalar uyuşmuyor"

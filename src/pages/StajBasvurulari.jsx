@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../layouts/Sidebar";
 import { useNavigate } from "react-router";
-import { loginController } from "../utilities/functions/loginControl";
+import { LoginController } from "../utilities/functions/loginControl";
+import { useSelector } from "react-redux";
 
 export default function StajBasvurulari() {
   const navigate = useNavigate();
@@ -9,9 +10,10 @@ export default function StajBasvurulari() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const roller = localStorage.getItem("roller");
+  const tokenCheckError = useSelector((state) => state.auth.tokenCheckError);
 
   useEffect(() => {
-    if (!loginController()) {
+    if (!LoginController()) {
       setIsLoggedIn(false);
       return navigate("/giris");
     }
@@ -25,8 +27,14 @@ export default function StajBasvurulari() {
       return navigate("/access-denied");
     }
 
+    if (tokenCheckError && tokenCheckError.code === 401) {
+      setIsLoggedIn(false);
+      localStorage.clear();
+      return navigate("/giris");
+    }
+
     setIsLoggedIn(true);
-  }, [isLoggedIn, navigate, roller]);
+  }, [isLoggedIn, navigate, roller, tokenCheckError]);
 
   return (
     <div className="main">

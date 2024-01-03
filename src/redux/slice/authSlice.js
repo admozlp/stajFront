@@ -5,15 +5,19 @@ const initialState = {
   isLoginLoading: false,
   isRegisterLoading: false,
   isVerifyPending: false,
+  isTokenChecking: false,
+
 
   registerResponse: {},
   loginResponse: {},
   logoutResponse: {},
   verifyResponse: {},
+  tokenCheckResponse:{},
 
   loginError: {},
   registerError: {},
   verifyError: {},
+  tokenCheckError: {}
 };
 
 const BASE_URL = "http://localhost:7000";
@@ -84,14 +88,15 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   const token = localStorage.getItem("user-token");
-  const res = await axios.request({
+  const res = await axios
+    .request({
       url: `${BASE_URL}/api/v1/auth/logout`,
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Cache-Control": "no-cache",
         "Content-Type": "application/json",
       },
-      method: "GET"      
+      method: "GET",
     })
     .then((response) => {
       return response;
@@ -102,6 +107,29 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 
   return res;
 });
+
+export const checkTokenExpired = createAsyncThunk(
+  "auth/checkTokenExpired",
+  async (value, {rejectWithValue}) => {
+    const token = localStorage.getItem("user-token");
+
+    try {
+      const res = await axios.request({
+        url: `${BASE_URL}/api/v1/check/check-token-expired`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Cache-Control": "no-cache",
+          "Content-Type": "application/json",
+        },
+      });
+      return res;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 
 export const authSlice = createSlice({
   name: "auth",
@@ -124,8 +152,6 @@ export const authSlice = createSlice({
     builder.addCase(addUser.rejected, (state, action) => {
       state.isRegisterLoading = false;
       state.registerError = action.payload.response;
-
-      console.log(state.registerError);
 
       state.loginError = {};
       state.loginResponse = {};
@@ -182,6 +208,8 @@ export const authSlice = createSlice({
       state.loginError = {};
     });
 
+
+    // verify account (email)
     builder.addCase(verifyAccount.pending, (state) => {
       state.isVerifyPending = true;
 
@@ -207,7 +235,6 @@ export const authSlice = createSlice({
       state.verifyError = action.payload;
       state.isVerifyPending = false;
 
-
       state.registerError = {};
       state.registerResponse = {};
       state.isLoginLoading = false;
@@ -215,7 +242,21 @@ export const authSlice = createSlice({
       state.loginResponse = {};
       state.loginError = {};
     });
+
+    // check token expired
+    builder.addCase(checkTokenExpired.pending, (state) => {
+      state.isTokenChecking = true;
+    });
+    builder.addCase(checkTokenExpired.fulfilled, (state, action) => {
+      state.tokenCheckResponse = action.payload;
+      state.isTokenChecking = false;
+    });
+    builder.addCase(checkTokenExpired.rejected, (state, action) => {
+      state.tokenCheckError = action.payload;      
+      state.isTokenChecking = false;
+    });
   },
+
 });
 
 export default authSlice.reducer;

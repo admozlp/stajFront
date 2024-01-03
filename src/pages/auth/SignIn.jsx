@@ -28,6 +28,10 @@ export default function SignIn() {
         localStorage.clear();
         localStorage.setItem("user-token", response.payload.data.data.access_token)        
         localStorage.setItem("roller", response.payload.data.data.roller)
+        if(response.payload.data.data.ogrenciDetay && 
+          response.payload.data.data.ogrenciDetay[0] === false){
+            localStorage.setItem("ogrenciDetay", response.payload.data.data.ogrenciDetay[0])
+          }
         navigate("/")
       }      
     });

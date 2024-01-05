@@ -1,170 +1,188 @@
+.row > * {
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+  padding-right: calc(var(--bs-gutter-x) * 0) !important;
+  padding-left: calc(var(--bs-gutter-x) * 0) !important;
+  margin-top: var(--bs-gutter-y) !important;
+}
 
-.row>* { 
-    margin-left: 0px !important;
-    padding-left: 0px !important;
-    padding-right: calc(var(--bs-gutter-x) * 0) !important;
-    padding-left: calc(var(--bs-gutter-x) * 0) !important; 
-    margin-top: var(--bs-gutter-y) !important;
-  }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .row{
-    display: flex;
-    flex-wrap: wrap;
-  }
-     
-  .resim {
-    height: auto;
-    width: 50%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    /* justify-content: center; */
-    position: relative;
-    overflow: hidden;
-    object-fit: cover;
-  }
-  
-  .background {
-    position: relative;
-    width: 100%;
-    object-fit:cover;
-    background-image: radial-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .8)), url('../images/aeuUsttenFotograf.jpg');
-    min-height: 117vh !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    filter: blur(1px);
-  }
-  
-  .background-image {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: 0;
-    background-size: cover;
-  }
-  
-  .foreground {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    overflow: hidden;
-  }
-  
-  .foreground-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  h3 {
-    margin: 0;
-    font-size: 1.7rem !important;
-    color: #d3e3e0 !important;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 900 !important;
-    box-shadow: 1px 3px 10px rgb(0, 0, 0) !important;
-    letter-spacing: 3px;
-    line-height: 2.3rem !important;
+.resim {
+  height: auto;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+}
 
-    outline: 2px solid white;
-  }
-  
-  .signup-container {
-    height: auto;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #060818;
-  }
-  
-  .signup-container h2 {
-    color: #e0e6ed;
-    margin-top: 5%;
-    margin-left: 20%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-  }
-  
-  .signup-container small {
-    color: #888ea8;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    display: block;
-    margin-left: 20%;
-  }
-  
-  .form-group {
-    margin-left: 20%;
-    margin-bottom: 1rem;
-  }
-  
-  label {
-    color: #888ea8;
-    display: block;
-    font-size: 1.1rem;
-    font-weight: normal;
-    margin-bottom: 0.5rem;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 70%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-    background-color: #1b2e4b;
-  }
+.background {
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+    url("../images/aeuUsttenFotograf.jpg");
+  min-height: 117vh !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  filter: blur(1px);
+}
+
+.background-image {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: 0;
+  background-size: cover;
+}
+
+.foreground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.foreground-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.7rem !important;
+  color: #d3e3e0 !important;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900 !important;
+  box-shadow: 1px 3px 10px rgb(0, 0, 0) !important;
+  letter-spacing: 3px;
+  line-height: 2.3rem !important;
+
+  outline: 2px solid white;
+}
+
+.signup-container {
+  height: auto;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #060818;
+}
+
+.signup-container h2 {
+  color: #e0e6ed;
+  margin-top: 5%;
+  margin-left: 20%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.signup-container small {
+  color: #888ea8;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: 20%;
+}
+
+.form-group {
+  margin-left: 20%;
+  margin-bottom: 1rem;
+}
 
 
-  .text-alani{
-    border-radius: 5px;
-    width: 70%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    background-color: #1b2e4b;
-    color: #009688;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-  
-  .girisbtn {
-    background-color: #805dca !important;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    border: none;
-    cursor: pointer;
-    margin-top: 0.4rem;
-    margin-bottom: 1rem;
-    width: 56%;
-    margin-left: 20%;
-    transition: transform 0.3s ease-out !important;
-  }
-  
-  .girisbtn:hover {
-    background-color: #805dca;
-    transform: translateY(-10px);
-  }
-  
-  p{
-    margin-left: 34%;
-    margin-right: 34%;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-  .link{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #e2a03f;
-    text-decoration: none;
-  }
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 70%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  background-color: #1b2e4b;
+}
 
-  
+.text-alani {
+  border-radius: 5px;
+  width: 70%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background-color: #1b2e4b;
+  color: #009688;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.girisbtn {
+  background-color: #805dca !important;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+  width: 56%;
+  margin-left: 20%;
+  transition: transform 0.3s ease-out !important;
+}
+
+.girisbtn:hover {
+  background-color: #805dca;
+  transform: translateY(-10px);
+}
+
+p {
+  margin-left: 34%;
+  margin-right: 34%;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.link-unuttum-div {
+  width: 75%;
+  display: flex; /* Add this line */
+  flex-direction: column; /* Add this line */
+  align-items: flex-end;
+}
+
+.link-unuttum {
+  text-decoration: none;
+  color: rgb(182, 182, 236);
+}
+
+.link {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #e2a03f;
+  text-decoration: none;
+}
+.signin-label{
+  color: #888ea8;
+  display: block;
+  font-size: 1.1rem;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+}
+
+.text-alani[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.remember-me{
+  width: 17px !important;
+  height: 17px !important;
+}

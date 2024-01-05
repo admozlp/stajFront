@@ -8,7 +8,8 @@ import { LoginController } from "../utilities/functions/loginControl";
 import { useDispatch, useSelector } from "react-redux";
 import { checkTokenExpired } from "../redux/slice/authSlice";
 import { Spinner } from "react-bootstrap";
-import '../style/css/profil-eksik.css'
+import "../style/css/profil-eksik.css";
+import { NotificationManager } from "react-notifications";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -22,7 +23,9 @@ export default function Dashboard() {
   const isTokenChecking = useSelector((state) => state.auth.isTokenChecking);
 
   useEffect(() => {
-    dispatch(checkTokenExpired());
+    const token = localStorage.getItem("user-token");
+
+    dispatch(checkTokenExpired(token));
 
     if (!LoginController()) {
       setIsLoggedIn(false);
@@ -30,7 +33,11 @@ export default function Dashboard() {
       return navigate("/giris");
     }
 
-    if (tokenCheckError.response && tokenCheckError.response.data.code === 401) {
+    if (
+      tokenCheckError.response &&
+      tokenCheckError.response.data.code === 401
+    ) {
+      NotificationManager.error(tokenCheckError.response.data.message, "HATA",20000);
       setIsLoggedIn(false);
       localStorage.clear();
       return navigate("/giris");
@@ -41,55 +48,47 @@ export default function Dashboard() {
 
   return (
     <div className="main">
-      {
-        isTokenChecking ?
-        (
-          <div className="profil-eksik">
-            <div className="access-denied-container">
-              <Spinner
-                as="span"
-                animation="border"
-                size="xl"
-                role="status"
-                aria-hidden="true"
-              />
-            </div> 
+      {isTokenChecking ? (
+        <div className="profil-eksik">
+          <div className="access-denied-container">
+            <Spinner
+              as="span"
+              animation="border"
+              size="xl"
+              role="status"
+              aria-hidden="true"
+            />
           </div>
-
-      ) : isLoggedIn && localStorage.getItem("ogrenciDetay") === 'false' ? 
-      (
-          <div className="profil-eksik">
-            <div className="access-denied-container">
-              <h1 className="erisim-engellendi" style={{color:"white"}}>Profil Bilgileriniz eksik</h1>
-              <p className="home-aciklama">
-                Profilinizi tamamlamak için
-                <small> </small>
-                <Link to="/profilim" className="to-home">
-                  buraya tıklayın.
-                </Link>
-              </p>
-            </div>
-
-          </div>
-      ) : isLoggedIn && localStorage.getItem("ogrenciDetay") === 'true' ? 
-      ( 
-        <>
-        <Sidebar aktif={0} />
-        <div className="dash-contain">
-          <h1 className="title">Burası ana sayfa</h1>
-          <p className="info">
-            Burada admin sekreter komisyon başkanı ve komisyon üyeleri kendi
-            programlarına ait istatistikleri görecek. Öğrenciler ise staj akış
-            diyagramı ve diğer bilgilendirmeleri görecek.
-          </p>
-          <button className="btn">Explore now</button>
         </div>
+      ) : isLoggedIn && localStorage.getItem("ogrenciDetay") === "false" ? (
+        <div className="profil-eksik">
+          <div className="access-denied-container">
+            <h1 className="erisim-engellendi" style={{ color: "white" }}>
+              Profil Bilgileriniz eksik
+            </h1>
+            <p className="home-aciklama">
+              Profilinizi tamamlamak için
+              <small> </small>
+              <Link to="/profilim" className="to-home">
+                buraya tıklayın.
+              </Link>
+            </p>
+          </div>
+        </div>
+      ) : isLoggedIn && localStorage.getItem("ogrenciDetay") === "true" ? (
+        <>
+          <Sidebar aktif={0} />
+          <div className="dash-contain">
+            <h1 className="title">Burası ana sayfa</h1>
+            <p className="info">
+              Burada admin sekreter komisyon başkanı ve komisyon üyeleri kendi
+              programlarına ait istatistikleri görecek. Öğrenciler ise staj akış
+              diyagramı ve diğer bilgilendirmeleri görecek.
+            </p>
+            <button className="btn">Explore now</button>
+          </div>
         </>
-      ) : (null)
-      
-      }
+      ) : null}
     </div>
   );
-
-  
 }

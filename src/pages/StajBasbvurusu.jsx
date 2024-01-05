@@ -23,8 +23,9 @@ export default function StajBasbvurusu() {
 
 
   useEffect(() => {
+    const token = localStorage.getItem("user-token");
 
-    dispatch(checkTokenExpired());
+    dispatch(checkTokenExpired(token));
 
     if (!LoginController()) {
       setIsLoggedIn(false);

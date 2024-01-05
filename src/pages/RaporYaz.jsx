@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function RaporYaz() {
   const navigate = useNavigate();
-  
+
   const dispatch = useDispatch();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,7 +21,9 @@ export default function RaporYaz() {
   const roller = localStorage.getItem("roller");
 
   useEffect(() => {
-    dispatch(checkTokenExpired());
+    const token = localStorage.getItem("user-token");
+
+    dispatch(checkTokenExpired(token));
 
     if (!LoginController()) {
       setIsLoggedIn(false);
@@ -32,7 +34,10 @@ export default function RaporYaz() {
       setIsLoggedIn(false);
       return navigate("/access-denied");
     }
-    if (tokenCheckError.response && tokenCheckError.response.data.code === 401) {
+    if (
+      tokenCheckError.response &&
+      tokenCheckError.response.data.code === 401
+    ) {
       setIsLoggedIn(false);
       localStorage.clear();
       return navigate("/giris");

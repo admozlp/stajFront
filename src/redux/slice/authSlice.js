@@ -6,6 +6,8 @@ const initialState = {
   isRegisterLoading: false,
   isVerifyPending: false,
   isTokenChecking: false,
+  forgetPasswordMailSending: false,
+  passworResetSending: false,
 
 
   registerResponse: {},
@@ -13,11 +15,16 @@ const initialState = {
   logoutResponse: {},
   verifyResponse: {},
   tokenCheckResponse:{},
+  forgetPasswordMailResponse: {},
+  passwordResetResponse: {},
+
 
   loginError: {},
   registerError: {},
   verifyError: {},
-  tokenCheckError: {}
+  tokenCheckError: {},
+  forgetPasswordMailError: {},
+  passwordResetError: {},
 };
 
 const BASE_URL = "http://localhost:7000";
@@ -110,9 +117,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 
 export const checkTokenExpired = createAsyncThunk(
   "auth/checkTokenExpired",
-  async (value, {rejectWithValue}) => {
-    const token = localStorage.getItem("user-token");
-
+  async (token, {rejectWithValue}) => {
     try {
       const res = await axios.request({
         url: `${BASE_URL}/api/v1/check/check-token-expired`,
@@ -126,6 +131,50 @@ export const checkTokenExpired = createAsyncThunk(
       return res;
     } catch (error) {
       return rejectWithValue(error);
+    }
+  }
+);
+
+export const forgetPasswordMail = createAsyncThunk(
+  "auth/forgetPasswordMail",
+  async (values, { rejectWithValue }) => {
+    try {
+      const headers = {
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json",
+      };
+      const res = await axios.request({
+        method: "GET",
+        url: `${BASE_URL}/api/v1/auth/sifremi-unuttum-mail-gonder?email=${values.email}`,
+        headers: headers,
+      });
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (values, { rejectWithValue }) => {
+    try {
+      const headers = {
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json",
+      };
+      const res = await axios.request({
+        method: "POST",
+        url: `${BASE_URL}/api/v1/auth/reset-password`,
+        headers: headers,
+        data:{
+          token: values.token,
+          password: values.password
+        }
+      });
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
     }
   }
 );
@@ -255,6 +304,33 @@ export const authSlice = createSlice({
       state.tokenCheckError = action.payload;      
       state.isTokenChecking = false;
     });
+
+    // forgetPasswordMail
+    builder.addCase(forgetPasswordMail.pending, (state) => {
+      state.forgetPasswordMailSending = true;
+    });
+    builder.addCase(forgetPasswordMail.fulfilled, (state, action) => {
+      state.forgetPasswordMailResponse = action.payload;
+      state.forgetPasswordMailSending = false;
+    });
+    builder.addCase(forgetPasswordMail.rejected, (state, action) => {
+      state.forgetPasswordMailError = action.payload;
+      state.forgetPasswordMailSending = false;
+    });
+
+    // resetPassword
+    builder.addCase(resetPassword.pending, (state) => {
+      state.passworResetSending = true;
+    });
+    builder.addCase(resetPassword.fulfilled, (state, action) => {
+      state.passwordResetResponse = action.payload;
+      state.passworResetSending = false;
+    });
+    builder.addCase(resetPassword.rejected, (state, action) => {
+      state.passwordResetError = action.payload;
+      state.passworResetSending = false;
+    });
+
   },
 
 });

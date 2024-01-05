@@ -1,0 +1,25 @@
+.sifre-unuttum-text-alani{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #009688;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+
+.sifre-unuttum-btn {
+    background-color: #805dca !important;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.4rem;
+    margin-bottom: 1rem;
+    width: 56%;
+    margin-left: 20%;
+  }
+  

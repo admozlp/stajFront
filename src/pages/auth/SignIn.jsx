@@ -7,6 +7,8 @@ import AeuLogo from "../../style/images/aeu.png"
 import 'react-notifications/lib/notifications.css';
 import { NotificationManager } from "react-notifications";
 import SigInForm from "../../layouts/SigInForm";
+import Cookies from 'js-cookie';
+
 
 
 
@@ -23,9 +25,22 @@ export default function SignIn() {
   const registerResponse = useSelector((state) => state.auth.registerResponse);
 
   function handleOnSubmit(values) {
-    dispatch( login(values)).then((response) => {      
+    if(values.remember){
+      Cookies.set('email',values.email)
+      Cookies.set('password',values.password)
+      Cookies.set('remember',true)
+    }else{
+      Cookies.remove('email')
+      Cookies.remove('password')
+      Cookies.remove('remember')
+    }
+
+    dispatch( login(values)).then((response) => {  
+          
       if (login.fulfilled.match(response) && response.payload.status === 200) {      
+  
         localStorage.clear();
+
         localStorage.setItem("user-token", response.payload.data.data.access_token)        
         localStorage.setItem("roller", response.payload.data.data.roller)
         if(response.payload.data.data.ogrenciDetay && 
@@ -44,7 +59,6 @@ export default function SignIn() {
     }
     if(loginError && loginError.data != null){
       NotificationManager.error(`${loginError.data.message}`, "Giriş Başarısız", 2800)  
-      //window.location.reload(true); // sayfayı yenile
     }
     if(registerResponse  && registerResponse.code === 200){
       NotificationManager.info(`Mail kutunuzu kontrol ediniz.`, "Kayıt Tamamlandı", 2800)

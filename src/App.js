@@ -13,6 +13,8 @@ import StajBasbvurusu from "./pages/StajBasbvurusu";
 import AccessDenied from "./pages/AccessDenied";
 import PageNotFound from "./pages/PageNotFound";
 import VerifyAccount from "./pages/VerifyAccount";
+import SifremiUnuttum from "./pages/SifremiUnuttum";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route exact="true" path="/ayarlar" element={<GenelAyarlar />} />
         <Route exact="true" path="/profilim" element={<Profilim />} />
         <Route exact="true" path="/verify-account/:token" element={<VerifyAccount />} />
+        <Route exact="true" path="/sifremi-unuttum" element={<SifremiUnuttum />} />
+        <Route exact="true" path="/reset-password" element={<ResetPassword />} />
         
 
         <Route exact="true" path="/giris" element={<SignIn />} />

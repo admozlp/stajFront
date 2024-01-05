@@ -70,7 +70,8 @@ export default function SignupForm({ handleOnSubmit }) {
         </small>
         <div>
           <div className="form-group">
-            <label htmlFor="firstName">Ad</label>
+            <label className='signin-label' 
+             htmlFor="firstName">Ad</label>
             <AdemTextInput
               name="firstname"
               type="text"
@@ -80,7 +81,8 @@ export default function SignupForm({ handleOnSubmit }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="lastName">Soyad</label>
+            <label  className='signin-label' 
+            htmlFor="lastName">Soyad</label>
             <AdemTextInput
               name="lastname"
               type="text"
@@ -90,7 +92,8 @@ export default function SignupForm({ handleOnSubmit }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Kurumsal email</label>
+            <label className='signin-label' 
+             htmlFor="email">Kurumsal email</label>
             <AdemTextInput
               name="email"
               type="email"
@@ -101,7 +104,8 @@ export default function SignupForm({ handleOnSubmit }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Parola</label>
+            <label  className='signin-label' 
+            htmlFor="password">Parola</label>
             <AdemTextInput
               name="password"
               id="password"
@@ -111,7 +115,8 @@ export default function SignupForm({ handleOnSubmit }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Parola Tekrarı</label>
+            <label  className='signin-label' 
+            htmlFor="password">Parola Tekrarı</label>
             <AdemTextInput
               name="passwordConfirmation"
               id="passwordConfirmation"
